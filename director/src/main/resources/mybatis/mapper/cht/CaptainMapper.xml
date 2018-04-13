@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnu.mapper.cht.CaptainMapper">
+  <resultMap id="BaseResultMap" type="com.hnu.entity.cht.Captain">
+    <id column="tjid" jdbcType="INTEGER" property="tjid" />
+    <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="lockstatus" jdbcType="TINYINT" property="lockstatus" />
+    <result column="phone1" jdbcType="VARCHAR" property="phone1" />
+    <result column="phone2" jdbcType="VARCHAR" property="phone2" />
+    <result column="phone3" jdbcType="VARCHAR" property="phone3" />
+    <result column="agenttjid" jdbcType="INTEGER" property="agenttjid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="companyname" jdbcType="VARCHAR" property="companyname" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tjid, unionid, mobile, lockstatus, phone1, phone2, phone3, agenttjid, address, companyname
+  </sql>
+  <select id="selectByExample" parameterType="com.hnu.entity.cht.CaptainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_captain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_captain
+    where tjid = #{tjid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_captain
+    where tjid = #{tjid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hnu.entity.cht.CaptainExample">
+    delete from tb_captain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hnu.entity.cht.Captain">
+    insert into tb_captain (tjid, unionid, mobile, 
+      lockstatus, phone1, phone2, 
+      phone3, agenttjid, address, 
+      companyname)
+    values (#{tjid,jdbcType=INTEGER}, #{unionid,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{lockstatus,jdbcType=TINYINT}, #{phone1,jdbcType=VARCHAR}, #{phone2,jdbcType=VARCHAR}, 
+      #{phone3,jdbcType=VARCHAR}, #{agenttjid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{companyname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hnu.entity.cht.Captain">
+    insert into tb_captain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tjid != null">
+        tjid,
+      </if>
+      <if test="unionid != null">
+        unionid,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="lockstatus != null">
+        lockstatus,
+      </if>
+      <if test="phone1 != null">
+        phone1,
+      </if>
+      <if test="phone2 != null">
+        phone2,
+      </if>
+      <if test="phone3 != null">
+        phone3,
+      </if>
+      <if test="agenttjid != null">
+        agenttjid,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="companyname != null">
+        companyname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tjid != null">
+        #{tjid,jdbcType=INTEGER},
+      </if>
+      <if test="unionid != null">
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lockstatus != null">
+        #{lockstatus,jdbcType=TINYINT},
+      </if>
+      <if test="phone1 != null">
+        #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null">
+        #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="agenttjid != null">
+        #{agenttjid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null">
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hnu.entity.cht.CaptainExample" resultType="java.lang.Long">
+    select count(*) from tb_captain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_captain
+    <set>
+      <if test="record.tjid != null">
+        tjid = #{record.tjid,jdbcType=INTEGER},
+      </if>
+      <if test="record.unionid != null">
+        unionid = #{record.unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lockstatus != null">
+        lockstatus = #{record.lockstatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.phone1 != null">
+        phone1 = #{record.phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone2 != null">
+        phone2 = #{record.phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone3 != null">
+        phone3 = #{record.phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agenttjid != null">
+        agenttjid = #{record.agenttjid,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyname != null">
+        companyname = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_captain
+    set tjid = #{record.tjid,jdbcType=INTEGER},
+      unionid = #{record.unionid,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      lockstatus = #{record.lockstatus,jdbcType=TINYINT},
+      phone1 = #{record.phone1,jdbcType=VARCHAR},
+      phone2 = #{record.phone2,jdbcType=VARCHAR},
+      phone3 = #{record.phone3,jdbcType=VARCHAR},
+      agenttjid = #{record.agenttjid,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      companyname = #{record.companyname,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hnu.entity.cht.Captain">
+    update tb_captain
+    <set>
+      <if test="unionid != null">
+        unionid = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lockstatus != null">
+        lockstatus = #{lockstatus,jdbcType=TINYINT},
+      </if>
+      <if test="phone1 != null">
+        phone1 = #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null">
+        phone3 = #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="agenttjid != null">
+        agenttjid = #{agenttjid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null">
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tjid = #{tjid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hnu.entity.cht.Captain">
+    update tb_captain
+    set unionid = #{unionid,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      lockstatus = #{lockstatus,jdbcType=TINYINT},
+      phone1 = #{phone1,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      phone3 = #{phone3,jdbcType=VARCHAR},
+      agenttjid = #{agenttjid,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      companyname = #{companyname,jdbcType=VARCHAR}
+    where tjid = #{tjid,jdbcType=INTEGER}
+  </update>
+</mapper>

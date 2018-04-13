@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnu.mapper.cht.DirectorAllInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hnu.entity.cht.DirectorAllInfo">
+    <result column="tjid" jdbcType="INTEGER" property="tjid" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="registtime" jdbcType="TIMESTAMP" property="registtime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="captaincircleid" jdbcType="VARCHAR" property="captaincircleid" />
+    <result column="factorycircleid" jdbcType="VARCHAR" property="factorycircleid" />
+    <result column="agenttjid" jdbcType="INTEGER" property="agenttjid" />
+    <result column="agentmobile" jdbcType="VARCHAR" property="agentmobile" />
+    <result column="agentname" jdbcType="VARCHAR" property="agentname" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tjid, mobile, registtime, name, idcard, status, captaincircleid, factorycircleid, 
+    agenttjid, agentmobile, agentname
+  </sql>
+  <select id="selectByExample" parameterType="com.hnu.entity.cht.DirectorAllInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from director_all_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.hnu.entity.cht.DirectorAllInfoExample">
+    delete from director_all_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hnu.entity.cht.DirectorAllInfo">
+    insert into director_all_info (tjid, mobile, registtime, 
+      name, idcard, status, 
+      captaincircleid, factorycircleid, agenttjid, 
+      agentmobile, agentname)
+    values (#{tjid,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{registtime,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{captaincircleid,jdbcType=VARCHAR}, #{factorycircleid,jdbcType=VARCHAR}, #{agenttjid,jdbcType=INTEGER}, 
+      #{agentmobile,jdbcType=VARCHAR}, #{agentname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hnu.entity.cht.DirectorAllInfo">
+    insert into director_all_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tjid != null">
+        tjid,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="registtime != null">
+        registtime,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="captaincircleid != null">
+        captaincircleid,
+      </if>
+      <if test="factorycircleid != null">
+        factorycircleid,
+      </if>
+      <if test="agenttjid != null">
+        agenttjid,
+      </if>
+      <if test="agentmobile != null">
+        agentmobile,
+      </if>
+      <if test="agentname != null">
+        agentname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tjid != null">
+        #{tjid,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="registtime != null">
+        #{registtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="captaincircleid != null">
+        #{captaincircleid,jdbcType=VARCHAR},
+      </if>
+      <if test="factorycircleid != null">
+        #{factorycircleid,jdbcType=VARCHAR},
+      </if>
+      <if test="agenttjid != null">
+        #{agenttjid,jdbcType=INTEGER},
+      </if>
+      <if test="agentmobile != null">
+        #{agentmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="agentname != null">
+        #{agentname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hnu.entity.cht.DirectorAllInfoExample" resultType="java.lang.Long">
+    select count(*) from director_all_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update director_all_info
+    <set>
+      <if test="record.tjid != null">
+        tjid = #{record.tjid,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registtime != null">
+        registtime = #{record.registtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null">
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.captaincircleid != null">
+        captaincircleid = #{record.captaincircleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factorycircleid != null">
+        factorycircleid = #{record.factorycircleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agenttjid != null">
+        agenttjid = #{record.agenttjid,jdbcType=INTEGER},
+      </if>
+      <if test="record.agentmobile != null">
+        agentmobile = #{record.agentmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentname != null">
+        agentname = #{record.agentname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update director_all_info
+    set tjid = #{record.tjid,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      registtime = #{record.registtime,jdbcType=TIMESTAMP},
+      name = #{record.name,jdbcType=VARCHAR},
+      idcard = #{record.idcard,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      captaincircleid = #{record.captaincircleid,jdbcType=VARCHAR},
+      factorycircleid = #{record.factorycircleid,jdbcType=VARCHAR},
+      agenttjid = #{record.agenttjid,jdbcType=INTEGER},
+      agentmobile = #{record.agentmobile,jdbcType=VARCHAR},
+      agentname = #{record.agentname,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

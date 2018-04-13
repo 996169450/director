@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar" />
+
+    <context id="director"  targetRuntime="MyBatis3">
+        <commentGenerator >
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://rdscp5h7mz0uj29xeo6uo.mysql.rds.aliyuncs.com:3306/db_circle?characterEncoding=utf8"
+                        userId="test1"
+                        password="asdf20160225" />
+
+        <javaModelGenerator targetPackage="com.hnu.entity.circle" targetProject="C:\Users\Administrator\Desktop\BackStage\director\src\main\java" />
+        <sqlMapGenerator targetPackage="mapper\circle" targetProject="C:\Users\Administrator\Desktop\BackStage\director\src\main\resources\mybatis" />
+        <!--    数据库　表名　生成名 -->
+        <javaClientGenerator targetPackage="com.hnu.mapper.circle" targetProject="C:\Users\Administrator\Desktop\BackStage\director\src\main\java" type="XMLMAPPER" />
+
+
+
+        <table tableName="circle_group_view"
+               domainObjectName="CircleGroupView" >
+        </table>
+
+
+        
+    </context>
+</generatorConfiguration>
